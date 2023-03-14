@@ -9,11 +9,11 @@ import sys
 metadata = bytes("endofimg", "utf-8")
 metadatalength = len(metadata)
 
-IP = "6.tcp.eu.ngrok.io"
-PORT = 14620
+IP = "0.tcp.eu.ngrok.io"
+PORT = 14451
 
 # IP = "127.0.0.1"
-# PORT = 2516
+# PORT = 8000
 
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 s.connect((IP,PORT))
@@ -27,15 +27,6 @@ while True:
         if metadata in fullmsg:
             break
         
-        # if len(fullmsg[10:]) >= msglen:
-        #     print("**********")
-        #     with open("data.txt", "w") as f:
-        #         f.write(str(fullmsg))
-        #     # print(fullmsg)
-        #     print("**********")
-        #     sys.exit()
-        #     break
-    
     img = pickle.loads(fullmsg[:fullmsg.find(metadata)])
     fullmsg = fullmsg[fullmsg.find(metadata) + metadatalength:]
     cv2.imshow("frame", img)
